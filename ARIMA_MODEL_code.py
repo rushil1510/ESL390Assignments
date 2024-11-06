@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error
 date_format = '%d/%m/%y'  # Adjust the format as needed
 
 # Load the data (replace with your actual path)
-data = pd.read_csv('assignment_dataset.csv', parse_dates=['Day'], index_col='Day', date_format=date_format)
+data = pd.read_csv('assignment_data.csv', parse_dates=['Day'], index_col='Day', date_format=date_format)
 
 # Checking the data
 print(data.head())
