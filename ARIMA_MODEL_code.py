@@ -8,11 +8,13 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Define a date parser function
-date_parser = lambda x: pd.to_datetime(x, format='%Y-%m-%d')  # Adjust the format as needed
+#date_parser = lambda x: pd.to_datetime(x, format='%Y-%m-%d')  # Adjust the format as needed
+# Update the date_parser format to match 'day/month/year' (two-digit year)
+date_parser = lambda x: pd.to_datetime(x, format='%d/%m/%y')
 
 # Load the data (replace with your actual path)
 try:
-    data = pd.read_csv('assignment_dataset.csv', parse_dates=['Date'], index_col='Date', date_parser=date_parser)
+    data = pd.read_csv('assignment_dataset.csv', parse_dates=['Day'], index_col='Day', date_parser=date_parser)
     #print("Data loaded successfully.")
 except FileNotFoundError:
     #print("The file 'assignment_dataset.csv' was not found. Please check the path and try again.")
@@ -33,6 +35,7 @@ test_data = data['DNI'][10:15]
 if train_data.isna().any():
     #print("Warning: Training data contains NaN values. Please check the dataset.")
     train_data = train_data.fillna(method='ffill')  # Forward fill NaNs
+
 
 # Define the range for p, d, q values
 
